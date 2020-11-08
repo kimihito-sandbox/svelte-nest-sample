@@ -1,0 +1,13 @@
+runtime: nodejs12
+
+entrypoint: npm --prefix ./api start:prod
+
+handlers:
+  - url: /api/.*
+    script: auto
+  - url: /
+    static_dirs: web/build
+  - url: /.*
+    expiration: 1s
+    static_files: web/build/index.html
+    upload: web/build/index.html
